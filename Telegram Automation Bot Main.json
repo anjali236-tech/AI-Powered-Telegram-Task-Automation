@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "Telegram Automation Bot Main",
   "type": "SHARED",
   "summary": "",
@@ -39,7 +39,7 @@
               "valid": true,
               "settings": {
                 "input": {
-                  "auth": "{{connections['QB8fklTyUdeNTTeIOtyEs']}}",
+                  "auth": "{{connections[]}}",
                   "model": "nvidia/nemotron-3-ultra-550b-a55b",
                   "prompt": "You are a smart, friendly Telegram chatbot integrated with ClickUp.\nYour responsibility is to understand every message sent by the user and decide whether it is a normal conversation or a request to create a ClickUp task.\n1. NORMAL CONVERSATION\nIf the user sends greetings, casual messages, general questions, or anything unrelated to creating a ClickUp task:\nRespond naturally and conversationally, like a normal chatbot.\nBe friendly, helpful, and concise.\nUnderstand the context of the conversation.\nDo not create a ClickUp task.\nSet \"intent\" to \"chat\".\nPut your complete response in the \"reply\" field.\nExamples:\nUser: Hi\nReply: Hello! How can I help you today?\nUser: How are you?\nReply: I'm doing great! How can I help you?\nUser: What can you do?\nReply: I can chat with you and help create and manage tasks in ClickUp!\n2. CLICKUP TASK CREATION\nIf the user asks you to create a task in ClickUp, extract the following FIVE required fields:\ntask_name\ntask_description\nstatus\npriority\nassignee\nRules:\nAll five fields are compulsory.\nExtract only information explicitly provided by the user.\nNever invent, assume, or automatically fill in missing values.\nSet \"intent\" to \"clickup_task\".\nIf all five fields are available, set \"is_complete\" to true.\nIf even one field is missing, set \"is_complete\" to false.\nWhen fields are missing, identify exactly which fields are missing and politely ask the user to provide them.\nDo not create a ClickUp task when information is incomplete.\n3. COMPLETE TASK RESPONSE\nWhen all five fields are provided:\nReturn all five extracted fields.\nSet \"is_complete\" to true.\nSet \"reply\" to a short confirmation such as: \"Your task details are complete. I'm creating your ClickUp task now.\"\n4. INCOMPLETE TASK RESPONSE\nWhen one or more fields are missing:\nSet \"is_complete\" to false.\nMention the missing fields in the \"reply\".\nPolitely ask the user to provide the missing information.\nExample:\nUser: Create a task called Website Testing and assign it to Alice.\nReply: Your task details are incomplete. Please provide the task description, status, and priority so I can create the task.\n5. STRICT OUTPUT FORMAT\nAlways return ONLY one valid JSON object with these exact keys:\n{\n\"intent\": \"chat\",\n\"reply\": \"Your response here\",\n\"task_name\": \"\",\n\"task_description\": \"\",\n\"status\": \"\",\n\"priority\": \"\",\n\"assignee\": \"\",\n\"is_complete\": false\n}\nIMPORTANT:\nAlways include all eight keys.\nUse double quotes for all JSON keys and string values.\nUse empty strings for ClickUp fields when the message is normal conversation or the respective task details are missing.\nUse a Boolean true or false for is_complete, not a string.\nNever include explanations, reasoning, introductory text, or Markdown outside the JSON.\nNever use Markdown code fences.\nNever return text before or after the JSON object.\nEnsure the output is valid JSON that can be directly parsed by the Convert Text to JSON step.{{trigger['output']['message']['text']}}\nFINAL OUTPUT RULE:\nYour response must start with { and end with }.\nNever start with !, \"Bot:\", or explanatory text.\nReturn only the JSON object. No other characters.",
                   "maxTokens": "2000"
@@ -114,7 +114,7 @@
                       "valid": true,
                       "settings": {
                         "input": {
-                          "auth": "{{connections['NHahZ1Xat53eFt39v04fz']}}",
+                          "auth": "{{connections[]}}",
                           "format": "None",
                           "chat_id": "{{trigger['output']['message']['chat']['id']}}",
                           "message": "{{step_3['output']['reply']}}",
@@ -181,7 +181,7 @@
                       "valid": true,
                       "settings": {
                         "input": {
-                          "auth": "{{connections['G17FmwkbHm0rRz4n0WDki']}}",
+                          "auth": "{{connections[]}}",
                           "name": "{{step_3['output']['task_name']}}",
                           "list_id": "1301010000007729",
                           "space_id": "1301010000005552",
@@ -297,7 +297,7 @@
                         "valid": true,
                         "settings": {
                           "input": {
-                            "auth": "{{connections['NHahZ1Xat53eFt39v04fz']}}",
+                            "auth": "{{connections[]}}",
                             "format": "None",
                             "chat_id": "{{trigger['output']['message']['chat']['id']}}",
                             "message": "Your task has been successfully created in ClickUp! ",
@@ -367,7 +367,7 @@
                       "valid": true,
                       "settings": {
                         "input": {
-                          "auth": "{{connections['NHahZ1Xat53eFt39v04fz']}}",
+                          "auth": "{{connections[]}}",
                           "format": "None",
                           "chat_id": "{{trigger['output']['message']['chat']['id']}}",
                           "message": "Invalid , Please Fill All Fileds.",
@@ -494,7 +494,7 @@
               "valid": true,
               "settings": {
                 "input": {
-                  "url": "https://api.telegram.org/bot9251523764:AAHm8fHnBpneP79CLNm9NNzI1LUORW9XWdU/getFile?file_id={{trigger['output']['message']['voice']['file_id']}}",
+                  "url": "https://api.telegram.org/bot  /getFile?file_id={{trigger['output']['message']['voice']['file_id']}}",
                   "body": {},
                   "method": "GET",
                   "headers": {},
@@ -574,7 +574,7 @@
                 "valid": true,
                 "settings": {
                   "input": {
-                    "url": "https://api.telegram.org/file/bot9251523764:AAHm8fHnBpneP79CLNm9NNzI1LUORW9XWdU/{{step_9['output']['body']['result']['file_path']}}",
+                    "url": "https://api.telegram.org/file/{{step_9['output']['body']['result']['file_path']}}",
                     "body": {},
                     "method": "GET",
                     "headers": {},
@@ -690,7 +690,7 @@
                     "valid": true,
                     "settings": {
                       "input": {
-                        "auth": "{{connections['Nkq3JxQ5M1ywUGB3rbPhR']}}",
+                        "auth": "{{connections[]}}",
                         "file": "{{step_13['output']['url']}}",
                         "model": "whisper-large-v3",
                         "temperature": 0,
@@ -736,7 +736,7 @@
                       "valid": true,
                       "settings": {
                         "input": {
-                          "auth": "{{connections['QB8fklTyUdeNTTeIOtyEs']}}",
+                          "auth": "{{connections[]}}",
                           "model": "nvidia/nemotron-3-ultra-550b-a55b",
                           "prompt": "You are a friendly, helpful AI chatbot on Telegram.\nYour job is to have natural conversations with users.\nInstructions:\nRespond naturally to greetings such as Hello, Hi, Hey and Good morning.\nAnswer general knowledge questions accurately.\nExplain topics in simple language.\nHelp users with summaries, explanations, ideas and everyday questions.\nBe friendly, polite and conversational.\nIf someone makes casual conversation, respond warmly.\nIf a question is unclear, ask for clarification.\nKeep answers concise unless the user asks for more detail.\nDo not return JSON or structured data.\nNever say you cannot respond just because the message is short.\nUser's message:\n{{step_12['output']}}\nKeep every response under 3,500 characters. Be concise and avoid unnecessary detail.",
                           "maxTokens": "2000"
@@ -778,7 +778,7 @@
                         "valid": true,
                         "settings": {
                           "input": {
-                            "auth": "{{connections['NHahZ1Xat53eFt39v04fz']}}",
+                            "auth": "{{connections[]}}",
                             "format": "None",
                             "chat_id": "{{trigger['output']['message']['chat']['id']}}",
                             "message": "{{step_15['output']}}",
@@ -860,7 +860,7 @@
               "valid": true,
               "settings": {
                 "input": {
-                  "auth": "{{connections['NHahZ1Xat53eFt39v04fz']}}",
+                  "auth": "{{connections[]}}",
                   "format": "None",
                   "chat_id": "{{trigger['output']['message']['chat']['id']}}",
                   "message": "Invalid Message type, Please send voice message or text!!",
@@ -974,7 +974,7 @@
           "pieceVersion": "0.9.1",
           "triggerName": "new_telegram_message",
           "input": {
-            "auth": "{{connections['NHahZ1Xat53eFt39v04fz']}}",
+            "auth": "{{connections[]}}",
             "update_types": [
               "message"
             ]
