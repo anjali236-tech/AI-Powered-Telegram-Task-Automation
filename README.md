@@ -69,7 +69,8 @@ The workflow is divided into multiple processing paths based on the type of user
 ## 📸 Workflow Screenshots
 
 ### Complete Automation Workflow
-![Complete Workflow](screenshots/complete_workflow.png)
+<img width="3200" height="2582" alt="Telegram Automation Bot Main" src="https://github.com/user-attachments/assets/1bf73e63-89e0-45b5-89b8-98e8f1781552" />
+
 
 ### Text Processing Branch
 ![Text Processing](screenshots/text_processing.png)
