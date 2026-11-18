@@ -71,16 +71,6 @@ The workflow is divided into multiple processing paths based on the type of user
 ### Complete Automation Workflow
 <img width="3200" height="2582" alt="Telegram Automation Bot Main" src="https://github.com/user-attachments/assets/1bf73e63-89e0-45b5-89b8-98e8f1781552" />
 
-
-### Text Processing Branch
-![Text Processing](screenshots/text_processing.png)
-
-### Voice Processing Branch
-![Voice Processing](screenshots/voice_processing.png)
-
-### ClickUp Task Creation
-![ClickUp Task](screenshots/clickup_task_created.png)
-
 ## 🔄 Sample Interaction Scenarios
 
 | User Input | Expected Behaviour |
